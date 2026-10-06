@@ -85,6 +85,10 @@ options:
 	const win = new electron.BrowserWindow(windowOptions);
 	win.loadURL(url);
 
+	win.webContents.on("will-prevent-unload", (event) => {
+		event.preventDefault();
+	});
+
 	const winFrom = (e: electron.IpcMainEvent) => electron.BrowserWindow.fromWebContents(e.sender);
 
 	electron.ipcMain.on("devtools", (e) => e.sender.toggleDevTools());
@@ -92,7 +96,10 @@ options:
 		const w = winFrom(e);
 		w?.setFullScreen(!w.isFullScreen());
 	});
-	electron.ipcMain.on("quit", () => electron.app.quit());
+	electron.ipcMain.on("quit", (e) => {
+		winFrom(e)?.destroy();
+		electron.app.quit();
+	});
 });
 
 electron.app.on("web-contents-created", (_e, contents) => {
