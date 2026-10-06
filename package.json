@@ -1,0 +1,33 @@
+{
+	"name": "webgameenhancer",
+	"version": "0.1.0",
+	"description": "Makes online games feel native: pointer lock, fullscreen, sensitivity, adblock",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/main.js",
+	"bin": {
+		"wge": "bin/wge.js"
+	},
+	"files": [
+		"dist",
+		"bin"
+	],
+	"scripts": {
+		"build:main": "bun build src/main.ts --outdir dist --target node --format esm --external electron --entry-naming main.js",
+		"build:preload": "bun build src/preload/index.ts --outfile dist/preload.cjs --target node --format cjs --external electron",
+		"build": "bun run build:main && bun run build:preload",
+		"typecheck": "tsc -p tsconfig.json --noEmit && tsc -p src/preload/tsconfig.json",
+		"start": "bun run build && electron . --"
+	},
+	"dependencies": {
+		"electron": "^43.3.0"
+	},
+	"devDependencies": {
+		"@ghostery/adblocker-electron": "^2.18.2",
+		"@types/bun": "latest",
+		"@types/node": "^26.2.0"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	}
+}
