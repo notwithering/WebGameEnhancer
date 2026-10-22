@@ -42,6 +42,7 @@ const commands: Record<string, () => void> = {
 	r: () => location.reload(),
 	arrowleft: () => history.back(),
 	arrowright: () => history.forward(),
+	escape: () => document.exitFullscreen(),
 
 	s: () => sensitivity.nextMode(),
 	"\\": () => sensitivity.setSensitivity(1),

@@ -12,20 +12,21 @@ use with `bun run start -- <url>`
 
 `mod` = `right control`
 
-| shortcut        | description                   |
-| --------------- | ----------------------------- |
-| `mod` + `]`     | increase sensitivity          |
-| `mod` + `[`     | decrease sensitivity          |
-| `mod` + `\`     | reset sensitivity             |
-| `mod` + `s`     | next sensitivity mode         |
-| `mod` + `f`     | toggle fullscreen             |
-| `mod` + `p`     | lock mouse pointer            |
-| `mod` + `m`     | maximize canvases and iframes |
-| `mod` + `q`     | quit                          |
-| `mod` + `r`     | reload                        |
-| `mod` + `left`  | browser back                  |
-| `mod` + `right` | browser forward               |
-| `mod` + `d`     | open devtools                 |
+| shortcut         | description                   |
+| ---------------- | ----------------------------- |
+| `mod` + `]`      | increase sensitivity          |
+| `mod` + `[`      | decrease sensitivity          |
+| `mod` + `\`      | reset sensitivity             |
+| `mod` + `s`      | next sensitivity mode         |
+| `mod` + `f`      | toggle window fullscreen      |
+| `mod` + `escape` | exit page fullscreen          |
+| `mod` + `p`      | lock mouse pointer            |
+| `mod` + `m`      | maximize canvases and iframes |
+| `mod` + `q`      | quit                          |
+| `mod` + `r`      | reload                        |
+| `mod` + `left`   | browser back                  |
+| `mod` + `right`  | browser forward               |
+| `mod` + `d`      | open devtools                 |
 
 ### patches
 

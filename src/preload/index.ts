@@ -6,4 +6,5 @@ commands.install();
 qol.removeFocusOutlines();
 qol.blockMouseNavigation();
 qol.patchPointerLock();
+qol.patchFullscreen();
 sensitivity.install();

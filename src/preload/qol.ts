@@ -58,3 +58,45 @@ export function patchPointerLock() {
 		},
 	});
 }
+
+export function patchFullscreen() {
+	electron.contextBridge.executeInMainWorld({
+		func: () => {
+			let fullscreenElement: HTMLElement | null;
+			let savedStyle: any;
+
+			Element.prototype.requestFullscreen = function (this: HTMLElement) {
+				if (fullscreenElement) Document.prototype.exitFullscreen();
+
+				fullscreenElement = this;
+				savedStyle = this.getAttribute("style");
+				this.style.cssText += ";position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;max-width:none!important;max-height:none!important;margin:0!important;z-index:2147483647!important;background:#000;";
+				this.dispatchEvent(new Event("fullscreenchange", { bubbles: true }));
+
+				return Promise.resolve();
+			};
+
+			Document.prototype.exitFullscreen = function () {
+				if (!fullscreenElement) return Promise.resolve();
+
+				if (savedStyle === null) {
+					fullscreenElement.removeAttribute("style");
+				} else {
+					fullscreenElement.setAttribute("style", savedStyle);
+				}
+				fullscreenElement.dispatchEvent(new Event("fullscreenchange", { bubbles: true }));
+				fullscreenElement = null;
+
+				return Promise.resolve();
+			};
+
+			const define = (name: string, get: () => any) =>
+				Object.defineProperty(Document.prototype, name, {
+					get,
+					configurable: true,
+				});
+			define("fullscreenElement", () => fullscreenElement);
+			define("fullscreenEnabled", () => true);
+		},
+	});
+}
