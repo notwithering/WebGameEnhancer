@@ -14,9 +14,9 @@
 	],
 	"scripts": {
 		"build:main": "bun build src/main.ts --outdir dist --target node --format esm --external electron --entry-naming main.js",
-		"build:preload": "bun build src/preload/index.ts --outfile dist/preload.cjs --target node --format cjs --external electron",
+		"build:preload": "bun build src/frame-patches/src/index.ts --outfile dist/preload.cjs --target node --format cjs --external electron",
 		"build": "bun run build:main && bun run build:preload",
-		"typecheck": "tsc -p tsconfig.json --noEmit && tsc -p src/preload/tsconfig.json",
+		"typecheck": "tsc -p tsconfig.json --noEmit && tsc -p src/frame-patches/src/tsconfig.json",
 		"start": "bun run build && electron . --"
 	},
 	"dependencies": {

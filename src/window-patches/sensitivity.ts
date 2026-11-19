@@ -1,6 +1,6 @@
 import * as electron from "electron";
-import * as sensitivity from "../preload/sensitivity";
-import * as bridge from "./bridge/bridge";
+import * as sensitivity from "../frame-patches/src/sensitivity";
+import * as bridge from "./bridge";
 
 const STEP_RATIO = 1.1;
 let scale = 1;

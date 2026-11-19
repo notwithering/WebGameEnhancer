@@ -1,5 +1,5 @@
 import electron from "electron";
-import * as bridge from "./bridge/bridge";
+import * as bridge from "./bridge";
 import * as sensitivity from "./sensitivity";
 
 const COMMAND_KEY = "ControlRight";

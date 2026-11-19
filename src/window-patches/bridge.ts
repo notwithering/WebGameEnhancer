@@ -1,5 +1,5 @@
 import * as electron from "electron";
-import * as sensitivity from "../../preload/sensitivity";
+import * as sensitivity from "../frame-patches/src/sensitivity";
 
 const bridgeChannel: string = "bridge";
 
