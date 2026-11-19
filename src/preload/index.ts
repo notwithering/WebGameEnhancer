@@ -1,10 +1,10 @@
-import * as commands from "./commands";
 import * as qol from "./qol";
 import * as sensitivity from "./sensitivity";
+import * as bridge from "./bridge";
 
-commands.install();
 qol.removeFocusOutlines();
 qol.blockMouseNavigation();
 qol.patchPointerLock();
 qol.patchFullscreen();
 sensitivity.install();
+bridge.install();

@@ -23,7 +23,7 @@ export function createToast() {
 
 	let hideTimeoutId: NodeJS.Timeout;
 
-	return function showToast(message: string, durationMs = 1500) {
+	return function showToast(message: string) {
 		if (!host.isConnected) {
 			(document.fullscreenElement ?? document.documentElement).appendChild(host);
 		}
@@ -34,7 +34,7 @@ export function createToast() {
 		clearTimeout(hideTimeoutId);
 		hideTimeoutId = setTimeout(() => {
 			toastElement.style.opacity = "0";
-		}, durationMs);
+		}, 1500);
 	};
 }
 

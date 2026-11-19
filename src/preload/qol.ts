@@ -59,6 +59,7 @@ export function patchPointerLock() {
 	});
 }
 
+// FIXME: very broken on many websites (e.g. doesnt fullscreen on totaljerkface, doesnt unfullscreen on yandex games)
 export function patchFullscreen() {
 	electron.contextBridge.executeInMainWorld({
 		func: () => {

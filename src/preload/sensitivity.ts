@@ -1,5 +1,4 @@
 import * as electron from "electron";
-import * as toast from "./toast";
 
 // TODO: cleanup
 export function install() {
@@ -76,29 +75,12 @@ export function install() {
 	});
 }
 
-const STEP_RATIO = 1.1;
-let sensitivity = 1;
-
-export function setSensitivity(newValue: number) {
-	sensitivity = newValue;
-	window.dispatchEvent(new CustomEvent("set-mouse-sensitivity-scale", { detail: sensitivity }));
-	toast.showToast(`sensitivity: ${sensitivity.toFixed(3)}x`);
+export function setSensitivity(scale: number) {
+	window.dispatchEvent(new CustomEvent("set-mouse-sensitivity-scale", { detail: scale }));
 }
 
-export function adjustSensitivity(direction: 1 | -1) {
-	const newValue = direction === 1 ? sensitivity * STEP_RATIO : sensitivity / STEP_RATIO;
-	setSensitivity(newValue);
-}
+export type Mode = "fraction" | "integer";
 
-type Mode = "fraction" | "integer";
-
-let mode: Mode = "fraction";
-export function setMode(m: Mode) {
-	mode = m;
+export function setMode(mode: Mode) {
 	window.dispatchEvent(new CustomEvent("set-sensitivity-mode", { detail: mode }));
-	toast.showToast(`sensitivity mode: ${mode}`);
-}
-
-export function nextMode() {
-	setMode(mode === "fraction" ? "integer" : "fraction");
 }

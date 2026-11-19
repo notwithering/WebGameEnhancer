@@ -3,6 +3,7 @@ import path from "path";
 import { ElectronBlocker } from "@ghostery/adblocker-electron";
 import { parseArgs } from "node:util";
 import fs from "fs";
+import injectFixes from "./inject/injectFixes";
 
 const { values: options, positionals: args } = parseArgs({
 	args: process.argv.slice(process.defaultApp ? 2 : 1).filter((a) => !/^-{2,}$/.test(a)),
@@ -84,29 +85,15 @@ options:
 	electron.Menu.setApplicationMenu(null);
 	const win = new electron.BrowserWindow(windowOptions);
 	win.loadURL(url);
-
-	win.webContents.on("will-prevent-unload", (event) => {
-		event.preventDefault();
-	});
-
-	const winFrom = (e: electron.IpcMainEvent) => electron.BrowserWindow.fromWebContents(e.sender);
-
-	electron.ipcMain.on("devtools", (e) => e.sender.toggleDevTools());
-	electron.ipcMain.on("fullscreen", (e) => {
-		const w = winFrom(e);
-		w?.setFullScreen(!w.isFullScreen());
-	});
-	electron.ipcMain.on("quit", (e) => {
-		winFrom(e)?.destroy();
-		electron.app.quit();
-	});
 });
 
-electron.app.on("web-contents-created", (_e, contents) => {
-	contents.setWindowOpenHandler(() => ({
+electron.app.on("browser-window-created", (_e, window) => {
+	window.webContents.setWindowOpenHandler(() => ({
 		action: "allow",
 		overrideBrowserWindowOptions: windowOptions,
 	}));
+
+	injectFixes(window);
 });
 
 electron.app.on("window-all-closed", () => {
