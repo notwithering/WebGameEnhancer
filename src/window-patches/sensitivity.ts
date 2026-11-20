@@ -11,7 +11,6 @@ export function setScale(top: electron.WebFrameMain, val: number) {
 		bridge.setSensitivityScale(frame, scale);
 	});
 	bridge.showToast(top, `sensitivity: ${scale.toFixed(3)}x`);
-	console.log(scale);
 }
 
 export function adjustScale(top: electron.WebFrameMain, direction: 1 | -1) {
