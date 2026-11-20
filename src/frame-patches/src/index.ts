@@ -5,6 +5,6 @@ import * as bridge from "./bridge";
 qol.removeFocusOutlines();
 qol.blockMouseNavigation();
 qol.patchPointerLock();
-qol.patchFullscreen();
+// qol.patchFullscreen();
 sensitivity.install();
 bridge.install();
