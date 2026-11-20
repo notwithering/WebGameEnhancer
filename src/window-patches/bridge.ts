@@ -30,6 +30,6 @@ export function lockPointer(frame: electron.WebFrameMain) {
 	send(frame, "lockPointer");
 }
 
-export function maximizeFrames(frame: electron.WebFrameMain) {
-	send(frame, "maximizeFrames");
+export function fullscreenNextFrame(frame: electron.WebFrameMain) {
+	send(frame, "fullscreenNextFrame");
 }

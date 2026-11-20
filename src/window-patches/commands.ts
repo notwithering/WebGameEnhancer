@@ -11,7 +11,7 @@ export function install(window: electron.BrowserWindow) {
 	const commands: Record<string, () => void> = {
 		KeyD: () => contents.toggleDevTools(),
 		KeyF: () => window.setFullScreen(!window.isFullScreen()),
-		KeyM: () => bridge.maximizeFrames(top),
+		KeyM: () => bridge.fullscreenNextFrame(top),
 		KeyP: () => bridge.lockPointer(top),
 		KeyQ: () => electron.app.quit(),
 		KeyR: () => contents.reload(),

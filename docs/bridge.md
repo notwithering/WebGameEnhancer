@@ -15,11 +15,11 @@ commands are sent via `ipcRenderer` on channel `bridge` with args being of type:
 
 ## commands
 
-| action                 | type of `data`                     | what it does                          |
-| ---------------------- | ---------------------------------- | ------------------------------------- |
-| `toast`                | `string`                           | show a toast with specified message   |
-| `sensitivity/setScale` | `number`                           | set scalar value of sensitivity patch |
-| `sensitivity/setMode`  | `<frame-patches/sensitivity>.Mode` | set mode of sensitivity patch         |
-| `exitFullscreen`       |                                    | runs `document.exitFullscreen()`      |
-| `lockPointer`          |                                    | locks the pointer                     |
-| `maximizeFrames`       |                                    | maximizes all canvases and frames     |
+| action                 | type of `data`                     | what it does                                                   |
+| ---------------------- | ---------------------------------- | -------------------------------------------------------------- |
+| `toast`                | `string`                           | show a toast with specified message                            |
+| `sensitivity/setScale` | `number`                           | set scalar value of sensitivity patch                          |
+| `sensitivity/setMode`  | `<frame-patches/sensitivity>.Mode` | set mode of sensitivity patch                                  |
+| `exitFullscreen`       |                                    | runs `document.exitFullscreen()`                               |
+| `lockPointer`          |                                    | locks the pointer                                              |
+| `fullscreenNextFrame`  |                                    | fullscreens next canvas or iframe that isnt already fullscreen |

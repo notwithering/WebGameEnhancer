@@ -12,21 +12,21 @@ use with `bun run start -- <url>`
 
 `mod` = `right control`
 
-| shortcut         | description                   |
-| ---------------- | ----------------------------- |
-| `mod` + `]`      | increase sensitivity          |
-| `mod` + `[`      | decrease sensitivity          |
-| `mod` + `\`      | reset sensitivity             |
-| `mod` + `s`      | next sensitivity mode         |
-| `mod` + `f`      | toggle window fullscreen      |
-| `mod` + `escape` | exit page fullscreen          |
-| `mod` + `p`      | lock mouse pointer            |
-| `mod` + `m`      | maximize canvases and iframes |
-| `mod` + `q`      | quit                          |
-| `mod` + `r`      | reload                        |
-| `mod` + `left`   | browser back                  |
-| `mod` + `right`  | browser forward               |
-| `mod` + `d`      | open devtools                 |
+| shortcut         | description              |
+| ---------------- | ------------------------ |
+| `mod` + `]`      | increase sensitivity     |
+| `mod` + `[`      | decrease sensitivity     |
+| `mod` + `\`      | reset sensitivity        |
+| `mod` + `s`      | next sensitivity mode    |
+| `mod` + `f`      | toggle window fullscreen |
+| `mod` + `escape` | exit page fullscreen     |
+| `mod` + `p`      | lock mouse pointer       |
+| `mod` + `m`      | force fullscreen on game |
+| `mod` + `q`      | quit                     |
+| `mod` + `r`      | reload                   |
+| `mod` + `left`   | browser back             |
+| `mod` + `right`  | browser forward          |
+| `mod` + `d`      | open devtools            |
 
 ### patches
 
@@ -53,9 +53,9 @@ theres 2 sensitivity modes switchable with `mod` + `s`:
 - `fraction` (default): leaves scaled values as fractions. meant for use on js-native games that support fractional axes such as krunker.io
 - `integer`: rounds scaled values to integers and stores remainder to add to next mouse event. meant for use on games that round the axes such as eaglercraft and most lower quality games. will be jumpy at extreme sensitivities. **use this if theres no movement at slow mouse movements when using fraction mode**
 
-### maximize canvases and iframes
+### force fullscreen
 
-some games wont let you fullscreen. by pressing `mod` + `m`, itll maximize all canvases and iframes, essentially forcing full screen
+some games wont let you fullscreen. by pressing `mod` + `m`, itll fullscreen the next canvas or iframe that isnt already fullscreen
 
 ## indiscriminate speedrun
 

@@ -24,31 +24,25 @@ export function install() {
 					document.body.requestPointerLock().catch((err) => console.warn("Pointer lock failed:", err));
 				}
 				break;
-			case "maximizeFrames":
-				const root = document.documentElement;
-				const keepTags = new Set(["canvas", "iframe"]);
+			case "fullscreenNextFrame":
+				const elements = document.querySelectorAll<HTMLCanvasElement | HTMLIFrameElement>("canvas, iframe");
 
-				const makeFullscreen = (el: HTMLElement) => {
-					Object.assign(el.style, {
-						position: "fixed",
-						top: "0",
-						left: "0",
-						width: "100%",
-						height: "100%",
-						zIndex: "999999",
-						border: "none",
-					});
-					root.insertBefore(el, root.firstChild);
-				};
-
-				document.querySelectorAll<HTMLCanvasElement | HTMLIFrameElement>("canvas, iframe").forEach(makeFullscreen);
-
-				[...root.childNodes].forEach((node) => {
-					if (!(node instanceof Element) || !keepTags.has(node.tagName.toLowerCase())) {
-						node.remove();
+				var currentElementIndex = -1;
+				elements.forEach((el: HTMLElement, i) => {
+					if (el == document.fullscreenElement) {
+						currentElementIndex = i;
+						return;
 					}
 				});
 
+				// no need to check if currentElementIndex === -1
+
+				const nextElement = elements[(currentElementIndex + 1) % elements.length];
+				if (!nextElement) {
+					break;
+				}
+
+				nextElement.requestFullscreen();
 				break;
 		}
 	});
