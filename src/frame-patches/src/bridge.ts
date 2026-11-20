@@ -1,6 +1,7 @@
 import * as toast from "./toast";
 import * as sensitivity from "./sensitivity";
 import * as electron from "electron";
+import { time } from "console";
 
 export function install() {
 	electron.ipcRenderer.on("bridge", (_e, args: { action: string; data: any }) => {
@@ -42,7 +43,17 @@ export function install() {
 					break;
 				}
 
-				nextElement.requestFullscreen();
+				if (document.fullscreenElement) {
+					document.exitFullscreen();
+				}
+				const intervalId = setInterval(() => {
+					if (document.fullscreenElement) {
+						return;
+					}
+
+					nextElement.requestFullscreen();
+					clearInterval(intervalId);
+				}, 50);
 				break;
 		}
 	});
